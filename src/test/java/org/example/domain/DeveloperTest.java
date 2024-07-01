@@ -11,13 +11,13 @@ class DeveloperTest {
     @Test
     void testDeveloperAttributes() {
         Developer ashKetchum = new Developer("Ash Ketchum", BigDecimal.valueOf(2_000));
-        SoftAssertions softly = new SoftAssertions();
-        softly.assertThat(ashKetchum.getSalary()).isEqualTo(BigDecimal.valueOf(2_000));
-        softly.assertThat(ashKetchum.calculateNetSalary()).isEqualByComparingTo(BigDecimal.valueOf(1_500));
-        softly.assertThat(ashKetchum.getName())
-                .startsWith("Ash")
-                .endsWith("Ketchum2");
-        softly.assertAll();
+        SoftAssertions.assertSoftly(s -> {
+            s.assertThat(ashKetchum.getSalary()).isEqualTo(BigDecimal.valueOf(2_000));
+            s.assertThat(ashKetchum.calculateNetSalary()).isEqualByComparingTo(BigDecimal.valueOf(1_500));
+            s.assertThat(ashKetchum.getName())
+                    .startsWith("Ash")
+                    .endsWith("Ketchum2");
+        });
     }
 
     @Test
